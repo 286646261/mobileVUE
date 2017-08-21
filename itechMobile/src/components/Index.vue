@@ -7,19 +7,44 @@
       <div>兼职</div>
       <div>极速岗位</div>
     </div>
+    <PositionItem v-bind:items="items"></PositionItem>
     <Tabbar selectedTab="首页"></Tabbar>
   </div>
 </template>
 
 <script>
 import Tabbar from './Tabbar.vue'
+import PositionItem from './PositionItem.vue'
+import {getInfo} from './api.js';
+
 export default {
-  components: {Tabbar},
+  components: {Tabbar, PositionItem},
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      items:[{
+        positionInfo:"java工程师",
+        price:"3000-5000／月",
+        createDate: '10.8发布',
+        locationInfo: '上海',
+        workDays: '每周5天',
+        type: '互联网'
+      },{
+        positionInfo:"java工程师",
+        price:"3000-5000／月",
+        createDate: '10.8发布',
+        locationInfo: '上海',
+        workDays: '每周5天',
+        type: '互联网'
+      }],
     }
+  },
+
+  mounted(){
+    getInfo(url).then(data => {
+      console.log("request");
+    });
   }
 }
 </script>
@@ -32,6 +57,7 @@ img{
 }
 .info{
   width:100%;
+  overflow:hidden;
 }
 .info div{
   width:21%;

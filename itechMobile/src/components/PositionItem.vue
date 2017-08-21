@@ -1,24 +1,31 @@
 <template>
-  <div class="index">
-    <img src="" />
-    <div class="info">
-      <div>知名外企</div>
-      <div>互联专区</div>
-      <div>兼职</div>
-      <div>极速岗位</div>
+  <div class="positionItem">
+    <div class="title">职位信息</div>
+    <div v-for="item in items" class="item">
+      <div class="pInfo">
+        <span>{{item.positionInfo}}</span>
+        <span class="red">¥{{item.price}}</span>
+      </div>
+      <div class="pInfo">
+        <span>上海Itech信息技术有限公司</span>
+        <span>{{item.createDate}}</span>
+      </div>
+      <div class="pInfo">
+        <span>{{item.locationInfo}}</span>
+        <span>{{item.workDays}}</span>
+        <span>{{item.type}}</span>
+      </div>
     </div>
-    <Tabbar selectedTab="首页"></Tabbar>
   </div>
 </template>
 
 <script>
-import Tabbar from './Tabbar.vue'
 export default {
-  components: {Tabbar},
-  name: 'hello',
+  props:['items'],
+  name: 'positionItem',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
     }
   }
 }
@@ -26,21 +33,31 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.title{
+  font-size:24px;
+  text-align:left;
+  margin-bottom:20px;
+}
+.red{
+  color:red;
+  display:inline-block;
+  float:right;
+}
 img{
   width:100%;
   background:gray;
 }
-.info{
-  width:100%;
+.positionItem{
+  padding:10px 20px;
 }
-.info div{
-  width:21%;
-  margin:15px 2%;
-  float:left;
-  border:1px solid #000;
-  height:80px;
-  line-height:80px;
-  box-sizing:border-box;
+.item{
+  border-bottom:1px solid #000;
+  margin-bottom:20px;
 }
-
+.pInfo{
+  font-size:16px;
+  line-height:30px;
+  overflow:hidden;
+  text-align:left;
+}
 </style>
